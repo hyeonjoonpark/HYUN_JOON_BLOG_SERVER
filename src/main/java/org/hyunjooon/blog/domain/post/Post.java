@@ -1,0 +1,62 @@
+package org.hyunjooon.blog.domain.post;
+
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hyunjooon.blog.domain.comment.Comment;
+import org.hyunjooon.blog.domain.tag.Tag;
+import org.hyunjooon.blog.global.common.entity.BaseTime;
+
+import java.util.List;
+
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(
+        indexes = {
+                @Index(name = "idx_post_title", columnList = "title"),
+                @Index(name = "idx_post_content", columnList = "content"),
+                @Index(name = "idx_post_tag", columnList = "tags")
+        }
+)
+public class Post extends BaseTime {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "blog_id" )
+    private Long id;
+
+    @Column(length = 50, nullable = false)
+    private String title;
+    @Column(columnDefinition = "TEXT", length = 1000)
+    private String content;
+
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Tag> tags;
+
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private  List<Comment> comments;
+
+    @ColumnDefault("0")
+    private int viewCount;
+    @ColumnDefault("0")
+    private int likeCount;
+
+    @Builder
+    public Post(String title, String content, int viewCount, int likeCount) {
+        this.title = title;
+        this.content = content;
+        this.viewCount = viewCount;
+        this.likeCount = likeCount;
+    }
+}

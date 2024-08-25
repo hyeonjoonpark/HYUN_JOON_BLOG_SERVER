@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hyunjooon.blog.domain.comment.Comment;
 import org.hyunjooon.blog.domain.tag.Tag;
+import org.hyunjooon.blog.domain.user.User;
 import org.hyunjooon.blog.global.common.entity.BaseTime;
 
 import java.util.List;
@@ -30,6 +31,11 @@ public class Post extends BaseTime {
     @Column(columnDefinition = "TEXT", length = 1000)
     private String content;
 
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_writer")
+    private User user;
+
     @OneToMany(
             mappedBy = "post",
             cascade = CascadeType.ALL,
@@ -49,6 +55,11 @@ public class Post extends BaseTime {
             orphanRemoval = true
     )
     private  List<Comment> comments;
+
+    public void addComment(Comment comment) {
+        comment.setPost(this);
+        this.comments.add(comment);
+    }
 
     @ColumnDefault("0")
     private int viewCount;

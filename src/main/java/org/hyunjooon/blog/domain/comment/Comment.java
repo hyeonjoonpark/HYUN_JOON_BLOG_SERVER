@@ -3,6 +3,7 @@ package org.hyunjooon.blog.domain.comment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hyunjooon.blog.domain.comment.types.Status;
 import org.hyunjooon.blog.domain.post.Post;
 import org.hyunjooon.blog.domain.user.User;
 import org.hyunjooon.blog.global.common.entity.BaseTime;
@@ -27,6 +28,8 @@ public class Comment extends BaseTime {
     @ColumnDefault("0")
     private int commentLike;
 
+    private Status status;
+
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_writer")
@@ -36,5 +39,6 @@ public class Comment extends BaseTime {
     public Comment(String comment, int commentLike) {
         this.comment = comment;
         this.commentLike = commentLike;
+        this.status = Status.WAITING;
     }
 }

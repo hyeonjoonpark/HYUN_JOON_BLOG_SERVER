@@ -1,10 +1,7 @@
 package org.hyunjooon.blog.domain.post;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hyunjooon.blog.domain.comment.Comment;
 import org.hyunjooon.blog.domain.tag.Tag;
@@ -38,7 +35,13 @@ public class Post extends BaseTime {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @Setter
     private List<Tag> tags;
+
+    public void addTags(Tag tag) {
+        tag.setPost(this);
+        this.tags.add(tag);
+    }
 
     @OneToMany(
             mappedBy = "post",

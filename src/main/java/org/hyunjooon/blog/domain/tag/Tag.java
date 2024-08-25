@@ -1,10 +1,7 @@
 package org.hyunjooon.blog.domain.tag;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hyunjooon.blog.domain.post.Post;
 
 @Entity
@@ -22,6 +19,7 @@ public class Tag {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @Builder
     public Tag(String tag) {
         this.tag = tag;
     }

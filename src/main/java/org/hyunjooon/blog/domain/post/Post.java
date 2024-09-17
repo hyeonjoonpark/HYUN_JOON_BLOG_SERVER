@@ -8,6 +8,7 @@ import org.hyunjooon.blog.domain.tag.Tag;
 import org.hyunjooon.blog.domain.user.User;
 import org.hyunjooon.blog.global.common.entity.BaseTime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,19 +16,18 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(
         indexes = {
-                @Index(name = "idx_post_title", columnList = "title"),
-                @Index(name = "idx_post_content", columnList = "content"),
-                @Index(name = "idx_post_tag", columnList = "tags")
+                @Index(name = "idx_post_title", columnList = "title")
         }
 )
 public class Post extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "blog_id" )
+    @Column(name = "blog_id")
     private Long id;
 
     @Column(length = 50, nullable = false)
     private String title;
+
     @Column(columnDefinition = "TEXT", length = 1000)
     private String content;
 
@@ -42,7 +42,7 @@ public class Post extends BaseTime {
             orphanRemoval = true
     )
     @Setter
-    private List<Tag> tags;
+    private List<Tag> tags = new ArrayList<>();
 
     public void addTags(Tag tag) {
         tag.setPost(this);
@@ -54,7 +54,7 @@ public class Post extends BaseTime {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private  List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     public void addComment(Comment comment) {
         comment.setPost(this);
@@ -63,6 +63,7 @@ public class Post extends BaseTime {
 
     @ColumnDefault("0")
     private int viewCount;
+
     @ColumnDefault("0")
     private int likeCount;
 

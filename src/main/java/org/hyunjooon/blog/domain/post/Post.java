@@ -7,7 +7,6 @@ import org.hyunjooon.blog.domain.comment.Comment;
 import org.hyunjooon.blog.domain.tag.Tag;
 import org.hyunjooon.blog.domain.user.User;
 import org.hyunjooon.blog.global.common.entity.BaseTime;
-import org.springframework.data.annotation.CreatedBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,6 @@ public class Post extends BaseTime {
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_writer")
-    @CreatedBy
     private User user;
 
     @OneToMany(

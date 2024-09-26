@@ -68,10 +68,9 @@ public class Post extends BaseTime {
     private int likeCount;
 
     @Builder
-    public Post(String title, String content, int viewCount, int likeCount) {
+    public Post(String title, String content, User user) {
         this.title = title;
         this.content = content;
-        this.viewCount = viewCount;
-        this.likeCount = likeCount;
+        this.user = user;
     }
 }

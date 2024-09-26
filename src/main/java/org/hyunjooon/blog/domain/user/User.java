@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hyunjooon.blog.domain.comment.Comment;
 import org.hyunjooon.blog.domain.post.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -32,7 +33,7 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
 
     public void addPost(Post post) {
         post.setUser(this);
@@ -44,7 +45,7 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     public void addComment(Comment comment) {
         comment.setUser(this);

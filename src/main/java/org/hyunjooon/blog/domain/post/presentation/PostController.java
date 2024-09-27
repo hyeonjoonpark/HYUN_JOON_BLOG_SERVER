@@ -1,22 +1,45 @@
 package org.hyunjooon.blog.domain.post.presentation;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.hyunjooon.blog.domain.post.presentation.dto.request.PostRequest;
+import org.hyunjooon.blog.domain.post.presentation.dto.response.PostResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
 public class PostController {
     // 게시물(post) 단일조회
+    @GetMapping("/read")
+    public PostResponse read() {
+        return null;
+    }
 
     // 게시물(post) 전체조회
-
-    // 게시물(post) 일부조회
+    @GetMapping("/read/list")
+    public PostResponse reads() {
+        return null;
+    }
 
     // 게시물(post) 작성
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody PostRequest postRequest) {
+        return null;
+    }
 
     // 게시물(post) 수정
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(
+            @PathVariable("id") Long id,
+            @RequestBody PostRequest postRequest
+    ) {
+        return null;
+    }
 
     // 게시물(post) 삭제
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+        return null;
+    }
 }

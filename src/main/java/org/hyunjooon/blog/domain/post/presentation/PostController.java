@@ -3,13 +3,17 @@ package org.hyunjooon.blog.domain.post.presentation;
 import lombok.RequiredArgsConstructor;
 import org.hyunjooon.blog.domain.post.presentation.dto.request.PostRequest;
 import org.hyunjooon.blog.domain.post.presentation.dto.response.PostResponse;
+import org.hyunjooon.blog.domain.post.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
 public class PostController {
+    private final PostService postService;
     // 게시물(post) 단일조회
     @GetMapping("/read")
     public PostResponse read() {
@@ -18,7 +22,7 @@ public class PostController {
 
     // 게시물(post) 전체조회
     @GetMapping("/read/list")
-    public PostResponse reads() {
+    public List<PostResponse> reads() {
         return null;
     }
 

@@ -13,11 +13,4 @@ import static org.hyunjooon.blog.domain.post.QPost.post;
 @RequiredArgsConstructor
 public class CustomPostRepositoryImpl implements CustomPostRepository {
     private final JPAQueryFactory jpaQueryFactory;
-
-    @Override
-    public Post findByTitle(String title) {
-        return jpaQueryFactory.selectFrom(post)
-                .where(post.title.eq(title))
-                .fetchOne();
-    }
 }

@@ -1,4 +1,4 @@
-package org.hyunjooon.blog.global.configs;
+package org.hyunjooon.blog.global.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

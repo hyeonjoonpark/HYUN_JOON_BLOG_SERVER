@@ -1,6 +1,7 @@
 package org.hyunjooon.blog.domain.post.service;
 
 import lombok.RequiredArgsConstructor;
+import org.hyunjooon.blog.domain.post.presentation.dto.request.PostRequest;
 import org.hyunjooon.blog.domain.post.presentation.dto.response.PostResponse;
 import org.hyunjooon.blog.domain.post.repository.PostRepository;
 import org.springframework.data.domain.Slice;
@@ -13,27 +14,27 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
     private final PostRepository postRepository;
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public PostResponse getPost() {
+    public PostResponse getPost(String userId, Long blogId) {
         return null;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public Slice<PostResponse> getPosts() {
+    public Slice<PostResponse> getPosts(String userId) {
         return null;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<?> createPost() {
+    public ResponseEntity<?> createPost(PostRequest postRequest) {
         return null;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<?> updatePost() {
+    public ResponseEntity<?> updatePost(String userId, Long blogId, PostRequest postRequest) {
         return null;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<?> deletePost() {
+    public ResponseEntity<?> deletePost(String userId, Long blogId) {
         return null;
     }
 }

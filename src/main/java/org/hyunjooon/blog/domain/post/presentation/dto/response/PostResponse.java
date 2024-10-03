@@ -2,7 +2,6 @@ package org.hyunjooon.blog.domain.post.presentation.dto.response;
 
 import jakarta.validation.constraints.Min;
 import lombok.Builder;
-import org.hyunjooon.blog.domain.comment.Comment;
 import org.hyunjooon.blog.domain.tag.Tag;
 import org.hyunjooon.blog.domain.user.User;
 
@@ -21,7 +20,6 @@ public record PostResponse(
         String content,
         User user,
         List<Tag> tags,
-        List<Comment> comments,
         @Min(0) int viewCount,
         @Min(0) int likeCount
 ) implements Serializable {

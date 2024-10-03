@@ -5,11 +5,14 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hyunjooon.blog.domain.auth.domain.Role;
 import org.hyunjooon.blog.domain.comment.Comment;
 import org.hyunjooon.blog.domain.post.Post;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Entity
@@ -26,7 +29,8 @@ public class User {
     private String provider;
     private String providerId;
 
-    private String role;
+    @ManyToMany(mappedBy = "user")
+    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(
             mappedBy = "user",
@@ -53,26 +57,13 @@ public class User {
     }
 
 
-    public User(String id, String email, String username, String password, String provider, String providerId, String role) {
+    public User(String id, String email, String username, String password, String provider, String providerId, Set<Role> roles) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
         this.provider = provider;
         this.providerId = providerId;
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", provider='" + provider + '\'' +
-                ", providerId='" + providerId + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+        this.roles = roles;
     }
 }
